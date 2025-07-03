@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MEDICAL EVACUATION REQUEST - 88th Regiment</title>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background-color: #f5f5dc;
+            margin: 0;
+            padding: 20px;
+            color: #2c1810;
+        }
+        
+        .controls {
+            max-width: 900px;
+            margin: 0 auto 20px;
+            background-color: #e8e8e8;
+            padding: 15px;
+            border-radius: 5px;
+            border: 2px solid #666;
+            text-align: center;
+        }
+        
+        .controls h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .controls button {
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 15px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .btn-reset {
+            background-color: #dc3545;
+        }
+        
+        .btn-reset:hover {
+            background-color: #c82333;
+        }
+        
+        .btn-send {
+            background-color: #28a745;
+        }
+        
+        .btn-send:hover {
+            background-color: #218838;
+        }
+        
+        .document {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fefdf8;
+            border: 3px solid #8b4513;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            display: block;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #8b4513;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .army-seal {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #8b4513;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #654321;
+            margin-bottom: 5px;
+        }
+        
+        .editable {
+            background-color: #ffffcc;
+            border: 1px dashed #999;
+            padding: 2px 4px;
+            min-width: 30px;
+            display: inline-block;
+            cursor: text;
+        }
+        
+        .editable:focus {
+            outline: 2px solid #4CAF50;
+            background-color: white;
+        }
+        
+        .editable:hover {
+            background-color: #ffffe0;
+        }
+        
+        .form-row {
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-field {
+            border-bottom: 1px solid #8b4513;
+            min-width: 100px;
+            padding: 2px 4px;
+            background-color: #ffffcc;
+            cursor: text;
+            flex: 1;
+            min-width: 80px;
+        }
+        
+        .form-field:focus {
+            outline: 2px solid #4CAF50;
+            background-color: white;
+        }
+        
+        .checkbox {
+            width: 15px;
+            height: 15px;
+            border: 2px solid #8b4513;
+            display: inline-block;
+            text-align: center;
+            line-height: 11px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        
+        .priority-red {
+            background-color: #ffebee;
+            border-left: 5px solid #dc143c;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        
+        .priority-yellow {
+            background-color: #fffef0;
+            border-left: 5px solid #ffa500;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        
+        .signature-area {
+            margin-top: 40px;
+            border-top: 2px solid #8b4513;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .signature-box {
+            border-bottom: 2px solid #8b4513;
+            width: 250px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+        
+        textarea.editable {
+            width: 100%;
+            min-height: 80px;
+            resize: vertical;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        
+        .classification-restricted {
+            background-color: #ff8c00;
+            color: white;
+            padding: 5px 15px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        @media print {
+            .controls {
+                display: none;
+            }
+            .editable, .form-field {
+                background-color: transparent !important;
+                border: none !important;
+                outline: none !important;
+            }
+            .success-message, .error-message {
+                display: none !important;
+            }
+            body {
+                background-color: white !important;
+                font-size: 11px;
+                line-height: 1.2;
+                margin: 0;
+                padding: 5mm;
+                -webkit-print-color-adjust: exact;
+            }
+            .document {
+                max-width: none !important;
+                width: calc(100% - 10mm) !important;
+                margin: 0 auto !important;
+                padding: 8px !important;
+                box-shadow: none !important;
+                border: 2px solid #8b4513 !important;
+                page-break-inside: avoid;
+            }
+            .header {
+                page-break-inside: avoid;
+                margin-bottom: 12px !important;
+                padding-bottom: 10px !important;
+            }
+            .title {
+                font-size: 16px !important;
+            }
+            .subtitle {
+                font-size: 11px !important;
+            }
+            .priority-red, .priority-yellow {
+                page-break-inside: avoid;
+                margin: 8px 0 !important;
+                padding: 6px !important;
+                font-size: 10px !important;
+            }
+            .signature-area {
+                page-break-before: avoid;
+                margin-top: 12px !important;
+                padding-top: 8px !important;
+                font-size: 9px !important;
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: flex-end !important;
+            }
+            textarea.editable {
+                min-height: 80px !important;
+                font-size: 9px !important;
+                line-height: 1.1 !important;
+                width: 100% !important;
+                border: none !important;
+                background: transparent !important;
+            }
+            .form-row {
+                margin: 6px 0 !important;
+                font-size: 10px !important;
+                line-height: 1.2 !important;
+            }
+            .classification-restricted {
+                background-color: #ff8c00 !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                font-size: 11px !important;
+                padding: 3px 10px !important;
+            }
+            .army-seal {
+                background: #8b4513 !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 14px !important;
+            }
+            .checkbox {
+                border: 1px solid #8b4513 !important;
+                width: 12px !important;
+                height: 12px !important;
+                font-size: 10px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-message" id="success-msg">
+        ✅ <strong>Demande d'évacuation envoyée avec succès !</strong> Votre document a été généré.
+    </div>
+    
+    <div class="error-message" id="error-msg">
+        ❌ <strong>Erreur lors de l'envoi.</strong> Veuillez vérifier les champs obligatoires.
+    </div>
+
+    <div class="controls">
+        <h3>🎛️ CONTRÔLES</h3>
+        <button class="btn-reset" onclick="resetDocument()">🔄 Reset</button>
+        <button class="btn-send" onclick="sendDocument()">📤 Envoyer la Demande</button>
+        <br><br>
+        <small>💡 <strong>Instructions:</strong> Remplissez les zones jaunes puis envoyez la demande.</small>
+    </div>
+
+    <div class="document" id="evacuation">
+        <div class="classification-restricted">
+            <span class="editable" contenteditable="true">RESTRICTED - MEDICAL USE ONLY</span>
+        </div>
+        
+        <div class="header">
+            <div class="army-seal">✚<br>MED</div>
+            <div class="title">MEDICAL EVACUATION REQUEST</div>
+            <div class="subtitle">Form WD AGO 52-8 (Revised July 1944)</div>
+            <div class="subtitle">88th Regiment</div>
+        </div>
+
+        <div class="priority-red">
+            <strong>URGENCY LEVEL:</strong>
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> URGENT (Red) - Immediate
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> PRIORITY (Yellow) - 4 hours  
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> ROUTINE (Green) - 24 hours
+        </div>
+
+        <div class="form-row">
+            <strong>Request Date/Time:</strong> 
+            <span class="form-field" contenteditable="true" id="evac-datetime">28 July 1944 / 1545 hrs</span>
+            <strong>Request Number:</strong> 
+            <span class="form-field" contenteditable="true" id="evac-number">EVA-1944-0847</span>
+        </div>
+
+        <div class="form-row">
+            <strong>Requesting Unit:</strong> 
+            <span class="form-field" contenteditable="true" id="evac-unit">88th Regiment</span>
+            <strong>Grid Coordinates:</strong> 
+            <span class="form-field" contenteditable="true" id="evac-grid">NM 234567</span>
+        </div>
+
+        <div style="margin: 25px 0;">
+            <strong>PATIENT INFORMATION:</strong>
+        </div>
+
+        <div class="form-row">
+            <strong>Name:</strong> 
+            <span class="form-field" contenteditable="true" id="patient-name" style="flex: 2;"></span>
+            <strong>Rank:</strong> 
+            <span class="form-field" contenteditable="true" id="patient-rank"></span>
+            <strong>Serial #:</strong> 
+            <span class="form-field" contenteditable="true" id="patient-serial"></span>
+        </div>
+
+        <div class="form-row">
+            <strong>Unit:</strong> 
+            <span class="form-field" contenteditable="true" id="patient-unit" style="flex: 2;"></span>
+            <strong>Age:</strong> 
+            <span class="form-field" contenteditable="true" id="patient-age"></span>
+            <strong>Blood Type:</strong> 
+            <span class="form-field" contenteditable="true" id="patient-blood"></span>
+        </div>
+
+        <div class="form-row">
+            <strong>Allergies:</strong> 
+            <span class="form-field" contenteditable="true" id="patient-allergies" style="flex: 3;"></span>
+            <strong>Nationality:</strong> 
+            <span class="form-field" contenteditable="true" id="patient-nationality">US</span>
+        </div>
+
+        <div style="margin: 25px 0;">
+            <strong>MEDICAL CONDITION:</strong>
+        </div>
+
+        <div>
+            <strong>Primary Diagnosis:</strong><br>
+            <textarea class="editable" id="evac-diagnosis" placeholder="Diagnostic principal..."></textarea>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <strong>INJURY TYPE:</strong><br>
+            <div class="form-row">
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Gunshot Wound
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Shrapnel/Fragment
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Burns
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Fracture
+            </div>
+            <div class="form-row">
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Head Trauma
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Internal Injury
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Disease
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Other: <span class="form-field" contenteditable="true"></span>
+            </div>
+        </div>
+
+        <div style="margin: 25px 0;">
+            <strong>TREATMENT ADMINISTERED:</strong>
+        </div>
+
+        <div class="form-row">
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Morphine - Dose: <span class="form-field" contenteditable="true"></span> mg at <span class="form-field" contenteditable="true"></span> hrs
+        </div>
+        <div class="form-row">
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Plasma/Blood - Volume: <span class="form-field" contenteditable="true"></span> cc
+        </div>
+        <div class="form-row">
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Pressure Bandage - Location: <span class="form-field" contenteditable="true"></span>
+        </div>
+        <div class="form-row">
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Splint - Member: <span class="form-field" contenteditable="true"></span>
+        </div>
+
+        <div>
+            <strong>Additional Treatment:</strong><br>
+            <textarea class="editable" id="evac-treatment" placeholder="Autres traitements administrés..."></textarea>
+        </div>
+
+        <div class="priority-yellow" style="margin-top: 25px;">
+            <strong>VITAL SIGNS (at time of request):</strong><br>
+            <div class="form-row">
+                <strong>Pulse:</strong> <span class="form-field" contenteditable="true" id="vital-pulse"></span> /min
+                <strong>BP:</strong> <span class="form-field" contenteditable="true" id="vital-bp"></span>
+                <strong>Respiration:</strong> <span class="form-field" contenteditable="true" id="vital-resp"></span> /min
+                <strong>Temp:</strong> <span class="form-field" contenteditable="true" id="vital-temp"></span> °F
+            </div>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <strong>DESTINATION HOSPITAL:</strong>
+            <div class="form-row">
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 12th Evacuation Hospital (Bayeux)
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 8th Field Hospital (Carentan)
+            </div>
+            <div class="form-row">
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 15th General Hospital (UK)
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Other: <span class="form-field" contenteditable="true"></span>
+            </div>
+        </div>
+
+        <div class="signature-area">
+            <div>
+                <strong>Attending Physician:</strong><br>
+                <div class="signature-box"></div>
+                <span class="editable" contenteditable="true">2nd Lieutenant Peter J. Parsons</span><br>
+                Medical Corps
+            </div>
+            <div>
+                <strong>Evacuation Authorized:</strong><br>
+                <div class="signature-box"></div>
+                <span class="editable" contenteditable="true">Time: _____ hrs</span><br>
+                <span class="editable" contenteditable="true">Date: _________</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCheckbox(element) {
+            if (element.textContent === '☐') {
+                element.textContent = '✓';
+            } else {
+                element.textContent = '☐';
+            }
+        }
+
+        function resetDocument() {
+            if (confirm('⚠️ Êtes-vous sûr de vouloir effacer tous les champs ?')) {
+                document.querySelectorAll('.editable, .form-field').forEach(field => {
+                    if (field.tagName === 'TEXTAREA') {
+                        field.value = field.placeholder || '';
+                    } else {
+                        field.textContent = '';
+                    }
+                });
+                
+                // Reset checkboxes
+                document.querySelectorAll('.checkbox').forEach(checkbox => {
+                    checkbox.textContent = '☐';
+                });
+                
+                // Reset to default values
+                document.getElementById('evac-datetime').textContent = '28 July 1944 / 1545 hrs';
+                document.getElementById('evac-number').textContent = 'EVA-1944-0847';
+                document.getElementById('evac-unit').textContent = '88th Regiment';
+                document.getElementById('evac-grid').textContent = 'NM 234567';
+                document.getElementById('patient-nationality').textContent = 'US';
+                
+                hideMessages();
+            }
+        }
+
+        function sendDocument() {
+            // Vérification des champs obligatoires
+            const requiredFields = ['patient-name', 'patient-rank', 'evac-datetime'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.textContent.trim()) {
+                    isValid = false;
+                    field.style.backgroundColor = '#ffcccc';
+                    setTimeout(() => {
+                        field.style.backgroundColor = '#ffffcc';
+                    }, 2000);
+                }
+            });
+            
+            if (!isValid) {
+                showError('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+            
+            // Générer et télécharger le document visuel
+            generateVisualDocument();
+        }
+
+        function generateVisualDocument() {
+            // Cacher les contrôles temporairement
+            const controls = document.querySelector('.controls');
+            const messages = document.querySelectorAll('.success-message, .error-message');
+            
+            controls.style.display = 'none';
+            messages.forEach(msg => msg.style.display = 'none');
+            
+            // Nettoyer l'apparence pour l'export
+            const editableFields = document.querySelectorAll('.editable, .form-field');
+            editableFields.forEach(field => {
+                field.style.backgroundColor = 'transparent';
+                field.style.border = 'none';
+                field.style.outline = 'none';
+            });
+            
+            // Générer le PDF avec l'impression du navigateur
+            const originalTitle = document.title;
+            const patientName = document.getElementById('patient-name').textContent || 'Patient';
+            const requestNumber = document.getElementById('evac-number').textContent || 'EVA';
+            document.title = `Medical_Evacuation_${patientName.replace(/\s+/g, '_')}_${requestNumber}_${new Date().toISOString().slice(0,10)}`;
+            
+            // Ouvrir la boîte d'impression - l'utilisateur choisit "Enregistrer au format PDF"
+            window.print();
+            
+            // Restaurer l'interface
+            setTimeout(() => {
+                document.title = originalTitle;
+                controls.style.display = 'block';
+                editableFields.forEach(field => {
+                    field.style.backgroundColor = '#ffffcc';
+                    field.style.borderBottom = '1px solid #8b4513';
+                });
+                showSuccess();
+            }, 1000);
+        }
+
+        function showSuccess() {
+            hideMessages();
+            document.getElementById('success-msg').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('success-msg').style.display = 'none';
+            }, 5000);
+        }
+
+        function showError(message) {
+            hideMessages();
+            const errorDiv = document.getElementById('error-msg');
+            errorDiv.innerHTML = `❌ <strong>Erreur:</strong> ${message}`;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function hideMessages() {
+            document.getElementById('success-msg').style.display = 'none';
+            document.getElementById('error-msg').style.display = 'none';
+        }
+
+        // Navigation par Tab
+        document.addEventListener('DOMContentLoaded', function() {
+            const editableElements = document.querySelectorAll('.editable, .form-field');
+            editableElements.forEach((element, index) => {
+                element.addEventListener('keydown', function(e) {
+                    if (e.key === 'Tab') {
+                        e.preventDefault();
+                        const nextIndex = (index + 1) % editableElements.length;
+                        editableElements[nextIndex].focus();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
