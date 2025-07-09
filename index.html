@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>MEDICAL EVACUATION REQUEST - 88th Regiment</title>
+    <title>DEMANDE D'ÉVACUATION MÉDICALE - 88ème Régiment</title>
     <style>
         
         @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
@@ -325,7 +325,7 @@
 
     <div class="controls">
         <h3>🎛️ CONTRÔLES</h3>
-        <button class="btn-reset" onclick="resetDocument()">🔄 Reset</button>
+        <button class="btn-reset" onclick="resetDocument()">🔄 Réinitialiser</button>
         <button class="btn-send" onclick="sendDocument()">📤 Envoyer la Demande</button>
         <br><br>
         <small>💡 <strong>Instructions:</strong> Remplissez les zones jaunes puis envoyez la demande.</small>
@@ -333,147 +333,147 @@
 
     <div class="document" id="evacuation">
         <div class="classification-restricted">
-            <span class="editable" contenteditable="true">RESTRICTED - MEDICAL USE ONLY</span>
+            <span class="editable" contenteditable="true">RESTREINT - USAGE MÉDICAL UNIQUEMENT</span>
         </div>
         
         <div class="header">
             <div class="army-seal">✚<br>MED</div>
-            <div class="title">MEDICAL EVACUATION REQUEST</div>
-            <div class="subtitle">Form WD AGO 52-8 (Revised July 1944)</div>
-            <div class="subtitle">88th Regiment</div>
+            <div class="title">DEMANDE D'ÉVACUATION MÉDICALE</div>
+            <div class="subtitle">Formulaire WD AGO 52-8 (Révisé juillet 1944)</div>
+            <div class="subtitle">88ème Régiment</div>
         </div>
 
         <div class="priority-red">
-            <strong>URGENCY LEVEL:</strong>
-            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> URGENT (Red) - Immediate
-            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> PRIORITY (Yellow) - 4 hours  
-            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> ROUTINE (Green) - 24 hours
+            <strong>NIVEAU D'URGENCE :</strong>
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> URGENT (Rouge) - Immédiat
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> PRIORITÉ (Jaune) - 4 heures  
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> ROUTINE (Vert) - 24 heures
         </div>
 
         <div class="form-row">
-            <strong>Request Date/Time:</strong> 
-            <span class="form-field" contenteditable="true" id="evac-datetime">28 July 1944 / 1545 hrs</span>
-            <strong>Request Number:</strong> 
+            <strong>Date/Heure demande :</strong> 
+            <span class="form-field" contenteditable="true" id="evac-datetime">28 juillet 1944 / 1545 hrs</span>
+            <strong>Numéro demande :</strong> 
             <span class="form-field" contenteditable="true" id="evac-number">EVA-1944-0847</span>
         </div>
 
         <div class="form-row">
-            <strong>Requesting Unit:</strong> 
-            <span class="form-field" contenteditable="true" id="evac-unit">88th Regiment</span>
-            <strong>Grid Coordinates:</strong> 
+            <strong>Unité demandeur :</strong> 
+            <span class="form-field" contenteditable="true" id="evac-unit">88ème Régiment</span>
+            <strong>Coordonnées grille :</strong> 
             <span class="form-field" contenteditable="true" id="evac-grid">NM 234567</span>
         </div>
 
         <div style="margin: 25px 0;">
-            <strong>PATIENT INFORMATION:</strong>
+            <strong>INFORMATIONS PATIENT :</strong>
         </div>
 
         <div class="form-row">
-            <strong>Name:</strong> 
+            <strong>Nom :</strong> 
             <span class="form-field" contenteditable="true" id="patient-name" style="flex: 2;"></span>
-            <strong>Rank:</strong> 
+            <strong>Grade :</strong> 
             <span class="form-field" contenteditable="true" id="patient-rank"></span>
-            <strong>Serial #:</strong> 
+            <strong>Matricule :</strong> 
             <span class="form-field" contenteditable="true" id="patient-serial"></span>
         </div>
 
         <div class="form-row">
-            <strong>Unit:</strong> 
+            <strong>Unité :</strong> 
             <span class="form-field" contenteditable="true" id="patient-unit" style="flex: 2;"></span>
-            <strong>Age:</strong> 
+            <strong>Âge :</strong> 
             <span class="form-field" contenteditable="true" id="patient-age"></span>
-            <strong>Blood Type:</strong> 
+            <strong>Groupe sanguin :</strong> 
             <span class="form-field" contenteditable="true" id="patient-blood"></span>
         </div>
 
         <div class="form-row">
-            <strong>Allergies:</strong> 
+            <strong>Allergies :</strong> 
             <span class="form-field" contenteditable="true" id="patient-allergies" style="flex: 3;"></span>
-            <strong>Nationality:</strong> 
+            <strong>Nationalité :</strong> 
             <span class="form-field" contenteditable="true" id="patient-nationality">US</span>
         </div>
 
         <div style="margin: 25px 0;">
-            <strong>MEDICAL CONDITION:</strong>
+            <strong>ÉTAT MÉDICAL :</strong>
         </div>
 
         <div>
-            <strong>Primary Diagnosis:</strong><br>
+            <strong>Diagnostic principal :</strong><br>
             <textarea class="editable" id="evac-diagnosis" placeholder="Diagnostic principal..."></textarea>
         </div>
 
         <div style="margin-top: 15px;">
-            <strong>INJURY TYPE:</strong><br>
+            <strong>TYPE DE BLESSURE :</strong><br>
             <div class="form-row">
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Gunshot Wound
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Shrapnel/Fragment
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Burns
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Blessure par balle
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Éclats/Fragments
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Brûlures
                 <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Fracture
             </div>
             <div class="form-row">
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Head Trauma
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Internal Injury
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Disease
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Other: <span class="form-field" contenteditable="true"></span>
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Traumatisme crânien
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Blessure interne
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Maladie
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Autre : <span class="form-field" contenteditable="true"></span>
             </div>
         </div>
 
         <div style="margin: 25px 0;">
-            <strong>TREATMENT ADMINISTERED:</strong>
+            <strong>TRAITEMENT ADMINISTRÉ :</strong>
         </div>
 
         <div class="form-row">
-            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Morphine - Dose: <span class="form-field" contenteditable="true"></span> mg at <span class="form-field" contenteditable="true"></span> hrs
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Morphine - Dose : <span class="form-field" contenteditable="true"></span> mg à <span class="form-field" contenteditable="true"></span> hrs
         </div>
         <div class="form-row">
-            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Plasma/Blood - Volume: <span class="form-field" contenteditable="true"></span> cc
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Plasma/Sang - Volume : <span class="form-field" contenteditable="true"></span> cc
         </div>
         <div class="form-row">
-            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Pressure Bandage - Location: <span class="form-field" contenteditable="true"></span>
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Pansement compressif - Localisation : <span class="form-field" contenteditable="true"></span>
         </div>
         <div class="form-row">
-            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Splint - Member: <span class="form-field" contenteditable="true"></span>
+            <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Attelle - Membre : <span class="form-field" contenteditable="true"></span>
         </div>
 
         <div>
-            <strong>Additional Treatment:</strong><br>
+            <strong>Traitement supplémentaire :</strong><br>
             <textarea class="editable" id="evac-treatment" placeholder="Autres traitements administrés..."></textarea>
         </div>
 
         <div class="priority-yellow" style="margin-top: 25px;">
-            <strong>VITAL SIGNS (at time of request):</strong><br>
+            <strong>SIGNES VITAUX (au moment de la demande) :</strong><br>
             <div class="form-row">
-                <strong>Pulse:</strong> <span class="form-field" contenteditable="true" id="vital-pulse"></span> /min
-                <strong>BP:</strong> <span class="form-field" contenteditable="true" id="vital-bp"></span>
-                <strong>Respiration:</strong> <span class="form-field" contenteditable="true" id="vital-resp"></span> /min
-                <strong>Temp:</strong> <span class="form-field" contenteditable="true" id="vital-temp"></span> °F
+                <strong>Pouls :</strong> <span class="form-field" contenteditable="true" id="vital-pulse"></span> /min
+                <strong>TA :</strong> <span class="form-field" contenteditable="true" id="vital-bp"></span>
+                <strong>Respiration :</strong> <span class="form-field" contenteditable="true" id="vital-resp"></span> /min
+                <strong>Temp :</strong> <span class="form-field" contenteditable="true" id="vital-temp"></span> °C
             </div>
         </div>
 
         <div style="margin-top: 25px;">
-            <strong>DESTINATION HOSPITAL:</strong>
+            <strong>HÔPITAL DE DESTINATION :</strong>
             <div class="form-row">
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 12th Evacuation Hospital (Bayeux)
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 8th Field Hospital (Carentan)
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 12ème Hôpital d'Évacuation (Bayeux)
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 8ème Hôpital de Campagne (Carentan)
             </div>
             <div class="form-row">
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 15th General Hospital (UK)
-                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Other: <span class="form-field" contenteditable="true"></span>
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> 15ème Hôpital Général (UK)
+                <span class="checkbox" onclick="toggleCheckbox(this)">☐</span> Autre : <span class="form-field" contenteditable="true"></span>
             </div>
         </div>
 
         <div class="signature-area">
             <div>
-                <strong>Attending Physician:</strong><br>
+                <strong>Médecin traitant :</strong><br>
                 <div class="signature-box"></div>
-                <span class="editable" contenteditable="true">2nd Lieutenant Peter J. Parsons</span><br>
-                Medical Corps
+                <span class="editable" contenteditable="true">2ème Lieutenant Pierre J. Parsons</span><br>
+                Corps Médical
             </div>
             <div>
-                <strong>Evacuation Authorized:</strong><br>
+                <strong>Évacuation autorisée :</strong><br>
                 <div class="signature-box"></div>
-                <span class="editable" contenteditable="true">Time: _____ hrs</span><br>
-                <span class="editable" contenteditable="true">Date: _________</span>
+                <span class="editable" contenteditable="true">Heure : _____ hrs</span><br>
+                <span class="editable" contenteditable="true">Date : _________</span>
             </div>
         </div>
     </div>
@@ -503,9 +503,9 @@
                 });
                 
                 // Reset to default values
-                document.getElementById('evac-datetime').textContent = '28 July 1944 / 1545 hrs';
+                document.getElementById('evac-datetime').textContent = '28 juillet 1944 / 1545 hrs';
                 document.getElementById('evac-number').textContent = 'EVA-1944-0847';
-                document.getElementById('evac-unit').textContent = '88th Regiment';
+                document.getElementById('evac-unit').textContent = '88ème Régiment';
                 document.getElementById('evac-grid').textContent = 'NM 234567';
                 document.getElementById('patient-nationality').textContent = 'US';
                 
@@ -558,7 +558,7 @@
             const originalTitle = document.title;
             const patientName = document.getElementById('patient-name').textContent || 'Patient';
             const requestNumber = document.getElementById('evac-number').textContent || 'EVA';
-            document.title = `Medical_Evacuation_${patientName.replace(/\s+/g, '_')}_${requestNumber}_${new Date().toISOString().slice(0,10)}`;
+            document.title = `Evacuation_Medicale_${patientName.replace(/\s+/g, '_')}_${requestNumber}_${new Date().toISOString().slice(0,10)}`;
             
             // Ouvrir la boîte d'impression - l'utilisateur choisit "Enregistrer au format PDF"
             window.print();
